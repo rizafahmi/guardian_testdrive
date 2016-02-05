@@ -9,6 +9,11 @@ defmodule GuardianOfGalaxy.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :browser_session do
+    plug Guardian.Plug.VerifySession
+    plug Guardian.Plug.LoadResource
+  end
+
   pipeline :api do
     plug :accepts, ["json"]
   end
